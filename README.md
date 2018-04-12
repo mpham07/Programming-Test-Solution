@@ -1,4 +1,4 @@
-Programming Test Solutions - Java
+Programming Test Solutions - Java - Minh Pham
 ==================
 
 This project is to answer all the questions, including Objective 1, 2, 3, 4 and 5.
