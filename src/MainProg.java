@@ -9,19 +9,64 @@ public class MainProg {
 	public static void main(String[] args) {
 		
 		MainProg prog = new MainProg();
-		String randASCIIString = "cat";
-		String strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA, 1);
-		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA, 2);
-		System.out.println("DNA: " + randASCIIString + " -> " + strDNA);
-		System.out.println("RNA: " + randASCIIString + " -> " + strRNA);
-		System.out.println();
+//		String randASCIIString = "cat";
+//		String strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA, 1);
+//		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA, 2);
+//		System.out.println("DNA: " + randASCIIString + " -> " + strDNA);
+//		System.out.println("RNA: " + randASCIIString + " -> " + strRNA);
+//		System.out.println();
+//		
+//		String randComplementaryStrandsString = "ACTGACTAAGAT";
+//		String originalDNA = prog.convertCompStrandsToDNA(randComplementaryStrandsString);
+//		System.out.print("Complementary strands: " + randComplementaryStrandsString + " -> " + originalDNA);
+//		String strASCII = prog.convertDNAtoASCII(originalDNA);
+//		System.out.println(" -> " + strASCII);
 		
-		String randComplementaryStrandsString = "ACTGACTAAGAT";
-		String originalDNA = prog.convertCompStrandsToDNA(randComplementaryStrandsString);
-		System.out.print("Complementary strands: " + randComplementaryStrandsString + " -> " + originalDNA);
-		String strASCII = prog.convertDNAtoASCII(originalDNA);
-		System.out.println(" -> " + strASCII);
+//		String strDNA_2 = "AGGTAB";
+//		String strDNA_1 = "GXTXAYB";
+		
+//		String strDNA_2 = "ababc.";
+//		String strDNA_1 = "abd.cb";
+		
+		String strDNA_1 = "ABAZDC";
+		String strDNA_2 = "BACBAD";
+		
+		String strlCS = prog.findingLCS(strDNA_1, strDNA_2);
+		System.out.println(strDNA_1);
+		System.out.println(strDNA_2);
+		System.out.println("LSC: " + strlCS);
 		System.out.println("Done!");
+	}
+	
+	// Objective 5
+	String findingLCS(String first, String second) {
+		String string1 = "", string2 = "";
+		
+		int indexAnchor = -1;
+		for(int i = 0; i< first.length(); i++) {
+			for(int j = indexAnchor + 1; j < second.length(); j++) {
+				
+				if ( first.charAt(i) == second.charAt(j)) {
+					indexAnchor = j;
+					string1 += second.charAt(j);
+					break;
+				}
+			}
+		}
+		
+		indexAnchor = -1;
+		for(int i = 0; i< second.length(); i++) {
+			for(int j = indexAnchor + 1; j < first.length(); j++) {
+				
+				if ( second.charAt(i) == first.charAt(j)) {
+					indexAnchor = j;
+					string2 += first.charAt(j);
+					break;
+				}
+			}
+		}
+		
+		return string1.length() > string2.length() ? string1 : string2;
 	}
 	
 	// Objective 1 & 2 & 3
