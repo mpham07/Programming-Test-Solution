@@ -1,8 +1,6 @@
 Programming Test Solutions - Java
 ==================
 
-[![Language](https://img.shields.io/badge/language-javascript-orange.svg)](http://www.oracle.com/technetwork/java/index-138747.html)
-
 This project is to answer all the questions, including Objective 1, 2, 3, 4 and 5.
 
 ### Requirements
@@ -10,7 +8,7 @@ This project is to answer all the questions, including Objective 1, 2, 3, 4 and 
 - Languague: Java
 
 ## Output ScreenShot
-<a href="https://imgflip.com/gif/1n85fw"><img src="https://i.imgflip.com/1n85fw.gif" title="made at imgflip.com"/></a>
+![Screenshot](ScreenShot.png)
 
 
 ## Referrence Links
