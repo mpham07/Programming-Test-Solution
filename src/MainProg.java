@@ -12,6 +12,13 @@ public class MainProg {
 		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA);
 		System.out.println("DNA: " + randASCIIString + " -> " + strDNA);
 		System.out.println("RNA: " + randASCIIString + " -> " + strRNA);
+		System.out.println();
+		
+		String randComplementaryStrandsString = "ACTGACTAAGAT";
+		String originalDNA = prog.convertCompStrandsToDNA(randComplementaryStrandsString);
+		System.out.println("Complementary strands: " + randComplementaryStrandsString + " -> " + originalDNA);
+		
+		
 	}
 	
 	String encodeASCIIToDNAorRNA(String strAscii, Type type) {
@@ -51,5 +58,24 @@ public class MainProg {
 		return "";
 	}
 	
-	//String convert
+	String convertCompStrandsToDNA(String randComStrands) {
+		
+		String originalDNA = "";
+		for(int i = 0; i< randComStrands.length(); i++) {
+			String ch = randComStrands.charAt(i) + "";
+			String newCh = "";
+			if (DNA_Char[0].equals(ch)) { newCh = DNA_Char[1]; }
+			if (DNA_Char[1].equals(ch)) { newCh = DNA_Char[0]; }
+			if (DNA_Char[2].equals(ch)) { newCh = DNA_Char[3]; }
+			if (DNA_Char[3].equals(ch)) { newCh = DNA_Char[2]; }
+			
+			originalDNA += newCh;
+		}
+		return originalDNA;
+	}
+	
+	String converDNAToASCII(String strDNA) {
+		
+		return "";
+	}
 }
