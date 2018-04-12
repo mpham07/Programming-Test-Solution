@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MainProg {
 	
 	enum Type { DNA, RNA }
@@ -16,11 +18,13 @@ public class MainProg {
 		
 		String randComplementaryStrandsString = "ACTGACTAAGAT";
 		String originalDNA = prog.convertCompStrandsToDNA(randComplementaryStrandsString);
-		System.out.println("Complementary strands: " + randComplementaryStrandsString + " -> " + originalDNA);
-		
-		
+		System.out.print("Complementary strands: " + randComplementaryStrandsString + " -> " + originalDNA);
+		String strASCII = prog.convertDNAtoASCII(originalDNA);
+		System.out.println(" -> " + strASCII);
+		System.out.println("Done!");
 	}
 	
+	// Objective 1 & 2
 	String encodeASCIIToDNAorRNA(String strAscii, Type type) {
 		
 		String strReturn = "";
@@ -29,7 +33,6 @@ public class MainProg {
 			int ascii_ch = (int) ch;
 			int[] num8bit = convertIntegerTobinary8bit(ascii_ch);
 
-			
 			int j = 0;
 			while(j < 8) {
 				
@@ -58,6 +61,7 @@ public class MainProg {
 		return "";
 	}
 	
+	// Objective 3 & 4
 	String convertCompStrandsToDNA(String randComStrands) {
 		
 		String originalDNA = "";
@@ -74,8 +78,72 @@ public class MainProg {
 		return originalDNA;
 	}
 	
-	String converDNAToASCII(String strDNA) {
+	String convertBin8BitToASCII(ArrayList<int[]> bins) {
 		
-		return "";
+		String strASCII = "";
+		for(int i=0; i < bins.size(); i++) {
+			int[] bin = bins.get(i);
+			
+			int sum = 0;
+			for(int j = bin.length - 1; j >= 0; j--) {
+				sum += Math.pow(2.0 , 7 - j) * bin[j] ;
+			}
+			
+			char chASCII = (char) sum;
+			strASCII += chASCII;
+		}
+
+		return strASCII;
+	}
+	
+	String convertDNAtoASCII(String strDNA) {
+		
+		String strASCII = convertBin8BitToASCII(convertDNAToBin8bit(strDNA)); 
+		return strASCII;
+	}
+	
+	ArrayList<int[]> convertDNAToBin8bit(String strDNA) {
+		
+		ArrayList<int[]> binDNAs = new ArrayList<>();
+		int[] newBinary = new int[8];
+		
+		int counting = 0;
+		for (int i = 0; i < strDNA.length(); i++) {
+			String ch = strDNA.charAt(i) + "";
+			
+			for (int j = 0 ; j < DNA_Char.length ; j++) {
+				if (DNA_Char[j].equals(ch)) {
+					
+					int first = 0, second = 0;
+					if (j == 0) { 
+						first = 0 ;
+						second = 0;
+					}else if (j == 1) { 
+						first = 0 ;
+						second = 1;
+					}else if (j == 2) { 
+						first = 1 ;
+						second = 0;
+					}else if (j == 3) { 
+						first = 1 ;
+						second = 1;
+					}
+					
+					newBinary[counting * 2] = first;
+					newBinary[counting * 2 + 1] = second;
+					break;
+				}
+			}
+			
+			counting++;
+			
+			if (counting == 4) {
+				counting = 0;
+				binDNAs.add(newBinary);
+				newBinary = new int[8];
+			}
+		}
+		
+		return binDNAs;
 	}
 }
