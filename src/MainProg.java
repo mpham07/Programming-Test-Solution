@@ -9,33 +9,52 @@ public class MainProg {
 	public static void main(String[] args) {
 		
 		MainProg prog = new MainProg();
-//		String randASCIIString = "cat";
-//		String strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA, 1);
-//		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA, 2);
-//		System.out.println("DNA: " + randASCIIString + " -> " + strDNA);
-//		System.out.println("RNA: " + randASCIIString + " -> " + strRNA);
-//		System.out.println();
-//		
-//		String randComplementaryStrandsString = "ACTGACTAAGAT";
-//		String originalDNA = prog.convertCompStrandsToDNA(randComplementaryStrandsString);
-//		System.out.print("Complementary strands: " + randComplementaryStrandsString + " -> " + originalDNA);
-//		String strASCII = prog.convertDNAtoASCII(originalDNA);
-//		System.out.println(" -> " + strASCII);
 		
-//		String strDNA_2 = "AGGTAB";
-//		String strDNA_1 = "GXTXAYB";
+		// Objective 1:
+		System.out.println("1. Objective 1: Encode ASCII to DNA");
+		String randASCIIString = "man";
+		String strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA, 0);
+		System.out.println("   Input : " + randASCIIString );
+		System.out.println("   Output: " + strDNA);
+		System.out.println();
 		
-//		String strDNA_2 = "ababc.";
-//		String strDNA_1 = "abd.cb";
+		// Objective 2:
+				System.out.println("2. Objective 2: Encode ASCII to RNA");
+		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA, 0);
+		System.out.println("   Input : " + randASCIIString );
+		System.out.println("   Output: " + strRNA);
+		System.out.println();
 		
-		String strDNA_1 = "ABAZDC";
-		String strDNA_2 = "BACBAD";
+		// Objective 3:
+		int startingIndex = 2;
+		System.out.println("3. Objective 3: Encode ASCII text substring to DNA, index = " + startingIndex);
+		if (startingIndex >= randASCIIString.length() || (startingIndex < 0)) {
+			System.out.println("   Starting index is out of range!!");
+		}else {	
+			strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA, startingIndex);
+			System.out.println("   Input : " + randASCIIString + " & startingIndex = " + startingIndex);
+			System.out.println("   Output: " + strDNA);	
+		}
+		System.out.println();
 		
+		// Objective 4:
+		System.out.println("4. Objective 4: Convert a complementary strand of DNA to primary strand");
+		String randComplementaryStrandsString = "ACGAACTAACGC"; // ACTGACTAAGAT
+		String originalDNA = prog.convertCompStrandsToDNA(randComplementaryStrandsString);
+		System.out.print("   (Input)  " + randComplementaryStrandsString + " -> " + originalDNA);
+		String strASCII = prog.convertDNAtoASCII(originalDNA);
+		System.out.println(" -> (Output)  " + strASCII);
+		System.out.println();
+		
+		// Objective 5:
+		System.out.println("5. Objective 5: Finding the longest common subsequence of the two strands of DNA");
+		String strDNA_1 = "TGACTGATTCTA";
+		System.out.println("   Input : First strand -> " + strDNA_1);
+		String strDNA_2 = "ACTGACTAAGAT";
+		System.out.println("   Input : Second strand -> " + strDNA_2);
 		String strlCS = prog.findingLCS(strDNA_1, strDNA_2);
-		System.out.println(strDNA_1);
-		System.out.println(strDNA_2);
-		System.out.println("LSC: " + strlCS);
-		System.out.println("Done!");
+		System.out.println("   Output: LSC is " + strlCS);
+		System.out.println("   Done!");
 	}
 	
 	// Objective 5
