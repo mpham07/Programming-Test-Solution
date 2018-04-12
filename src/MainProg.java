@@ -10,8 +10,8 @@ public class MainProg {
 		
 		MainProg prog = new MainProg();
 		String randASCIIString = "cat";
-		String strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA);
-		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA);
+		String strDNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.DNA, 1);
+		String strRNA = prog.encodeASCIIToDNAorRNA(randASCIIString, Type.RNA, 2);
 		System.out.println("DNA: " + randASCIIString + " -> " + strDNA);
 		System.out.println("RNA: " + randASCIIString + " -> " + strRNA);
 		System.out.println();
@@ -24,11 +24,20 @@ public class MainProg {
 		System.out.println("Done!");
 	}
 	
-	// Objective 1 & 2
-	String encodeASCIIToDNAorRNA(String strAscii, Type type) {
+	// Objective 1 & 2 & 3
+	String encodeASCIIToDNAorRNA(String strAscii, Type type, int indexStart) {
 		
 		String strReturn = "";
-		for(int i = 0 ; i < strAscii.length(); i++) {
+		
+		if (indexStart > 0) {
+			int i = 0;
+			while (i < indexStart) {
+				strReturn += strAscii.charAt(i) ;
+				i++;
+			}
+		}
+		
+		for(int i = indexStart ; i < strAscii.length(); i++) {
 			char ch = strAscii.charAt(i);
 			int ascii_ch = (int) ch;
 			int[] num8bit = convertIntegerTobinary8bit(ascii_ch);
@@ -61,7 +70,7 @@ public class MainProg {
 		return "";
 	}
 	
-	// Objective 3 & 4
+	// Objective 4
 	String convertCompStrandsToDNA(String randComStrands) {
 		
 		String originalDNA = "";
